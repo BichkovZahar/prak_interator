@@ -1,16 +1,20 @@
-class ListIterator:
-    def __init__(self , data):
-        self.data = data
-        self.index = 0
-    def __iter__(self):
+class OddIterator:
+   def __init__(self, n):
+       if not isinstance(n, int) or n <= 0:
+           raise ValueError("треба n ціле натуральне число")
+       self.n = n
+       self.current = 1
+   def __iter__(self):
         return self
-    def __next__(self):
-        if self.index >= len(self.data):
+   def __next__(self):
+        if self.current > self.n:
             raise StopIteration
-        value = self.data[self.index]
-        self.index += 1
-        return value
-my_list = [1 , 2 , 3 , 4 , 5 , 6]
-my_iter = ListIterator(my_list)
-for num in my_iter:
-    print(num)
+        else:
+            result = self.current
+            self.current +=2
+            return result
+try:
+    for num in OddIterator([1,2,3]):
+        print(num)
+except ValueError as e:
+    print (e)
