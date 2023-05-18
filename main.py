@@ -1,14 +1,16 @@
-lst = [1 , 2 , 3 , 4 , 5, 6 , 7]
-class SquareGenerator:
-
-    def __init__(self):
-        if isinstance(lst , list) is True:
-            print(lst)
-        elif isinstance(lst , lst) is not True:
-            raise TypeError("Беги🤬")
-    def my_generator(self):
-        for item in lst :
-            yield item ** 2
-
-    for num in my_generator(lst):
-        print(num)
+class ListIterator:
+    def __init__(self , data):
+        self.data = data
+        self.index = 0
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.index >= len(self.data):
+            raise StopIteration
+        value = self.data[self.index]
+        self.index += 1
+        return value
+my_list = [1 , 2 , 3 , 4 , 5 , 6]
+my_iter = ListIterator(my_list)
+for num in my_iter:
+    print(num)
